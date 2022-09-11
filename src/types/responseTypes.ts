@@ -11,5 +11,5 @@ export type ResponseType =
 
 export interface ServerResponse {
   type: ResponseType;
-  message: string;
+  message?: string;
 }

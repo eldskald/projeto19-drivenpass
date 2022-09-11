@@ -1,6 +1,12 @@
 import { Response } from 'express';
+import { ServerResponse } from '../types/responseTypes';
 
-function sendResponse(response: any, res: Response) {
+function sendResponse(response: ServerResponse | Error, res: Response) {
+  if (response instanceof Error) {
+    console.log(response);
+    return res.sendStatus(500);
+  }
+
   let statusCode: number;
   switch (response.type) {
     case 'Ok':
@@ -29,10 +35,6 @@ function sendResponse(response: any, res: Response) {
       break;
     case 'Unprocessable':
       statusCode = 422;
-      break;
-    default:
-      console.log(response);
-      return res.sendStatus(500);
   }
 
   if (response.message) return res.status(statusCode).send(response.message);
