@@ -1,6 +1,6 @@
 import joi, { Schema } from 'joi';
 
-const newUserSchema: Schema = joi.object({
+const signInSchema: Schema = joi.object({
   email: joi.string()
     .email()
     .required()
@@ -10,13 +10,11 @@ const newUserSchema: Schema = joi.object({
       'any.required': 'Email field is required'
     }),
   password: joi.string()
-    .min(10)
     .required()
     .messages({
       'string.base': 'Password must be a text',
-      'string.min': 'Password must be at least 10 characters long',
       'any.required': 'Password field is required'
     })
 });
 
-export default newUserSchema;
+export default signInSchema;

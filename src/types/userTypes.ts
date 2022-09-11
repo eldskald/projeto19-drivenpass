@@ -1,8 +1,6 @@
-export interface User {
-  id: number;
-  email: string;
-  password?: string;
-};
+import { users } from '@prisma/client';
+
+export type User = users;
 
 export interface NewUserData {
   email: string;

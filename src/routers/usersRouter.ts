@@ -1,8 +1,10 @@
 import { Router } from 'express';
-import { newUser } from '../controllers/usersController';
+import { signUp, signIn } from '../controllers/usersController';
 import schemaValidation from '../middlewares/schemaValidation';
-import newUserSchema from '../schemas/newUserSchema';
+import signUpSchema from '../schemas/signUpSchema';
+import signInSchema from '../schemas/signInSchema';
 
 const usersRouter = Router();
-usersRouter.post('/sign-up', schemaValidation(newUserSchema), newUser);
+usersRouter.post('/sign-up', schemaValidation(signUpSchema), signUp);
+usersRouter.post('/sign-in', schemaValidation(signInSchema), signIn)
 export default usersRouter;
