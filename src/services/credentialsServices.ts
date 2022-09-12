@@ -25,7 +25,7 @@ export async function createCredential(data: NewCredentialData): Promise<void> {
 export async function getCredential(credentialId: number, userId: number): Promise<Credential> {
   const credential: Credential | null = await findCredentialById(credentialId);
   if (!credential || credential.userId != userId) throw { type: 'Not Found' };
-  const decryptedPassword = decrypt(credential.password);
+  const decryptedPassword: string = decrypt(credential.password);
   return { ...credential, password: decryptedPassword };
 }
 

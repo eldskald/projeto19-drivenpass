@@ -11,9 +11,9 @@ model cards {
   id             Int      @id @default(autoincrement())
   userId         Int
   number         String   @db.VarChar(20)
-  holderName     String   @db.VarChar(20)
+  holderName     String   @db.VarChar(50)
   expirationDate String   @db.VarChar(5)
-  securityCode   String   @db.VarChar(3)
+  securityCode   String
   password       String
   isVirtual      Boolean
   type           cardType

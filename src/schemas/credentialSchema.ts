@@ -7,7 +7,7 @@ const credentialSchema: Schema = joi.object({
     .required()
     .messages({
       'string.base': 'Label must be text',
-      'string.pattern.base': 'Label must only contain letters and numbers',
+      'string.pattern.base': 'Label must only contain letters, numbers and spaces',
       'string.max': 'Label must be less than 50 characters long',
       'any.required': 'Label field is required'
     }),

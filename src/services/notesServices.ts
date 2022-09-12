@@ -17,7 +17,7 @@ export async function createNote(data: NewNoteData): Promise<void> {
       throw err;
     }
     if (meta.target[0] === 'userId' && meta.target[1] === 'title') {
-      throw { type: 'Conflict', message: 'Label already in use' };
+      throw { type: 'Conflict', message: 'Title already in use' };
     }
   }
 }
@@ -25,7 +25,7 @@ export async function createNote(data: NewNoteData): Promise<void> {
 export async function getNote(noteId: number, userId: number): Promise<Note> {
   const note: Note | null = await findNoteById(noteId);
   if (!note || note.userId != userId) throw { type: 'Not Found' };
-  const decryptedNote = decrypt(note.note);
+  const decryptedNote: string = decrypt(note.note);
   return { ...note, note: decryptedNote };
 }
 
