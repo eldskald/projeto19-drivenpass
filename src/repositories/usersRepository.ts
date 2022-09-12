@@ -1,7 +1,7 @@
 import db from '../database';
 import { User, NewUserData } from '../types/userTypes';
 
-export async function findUserById(id: number) {
+export async function findUserById(id: number): Promise<User | null> {
   return await db.users.findFirst({
     where: {
       id: id
@@ -9,7 +9,7 @@ export async function findUserById(id: number) {
   });
 }
 
-export async function findUserByEmail(email: string) {
+export async function findUserByEmail(email: string): Promise<User | null> {
   return await db.users.findFirst({
     where: {
       email: email
@@ -17,11 +17,11 @@ export async function findUserByEmail(email: string) {
   });
 }
 
-export async function insertUser(newUser: NewUserData) {
+export async function insertUser(data: NewUserData): Promise<void> {
   await db.users.create({
     data: {
-      email: newUser.email,
-      password: newUser.password
+      email: data.email,
+      password: data.password
     }
   });
 }

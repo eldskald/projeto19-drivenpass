@@ -6,5 +6,5 @@ import signInSchema from '../schemas/signInSchema';
 
 const usersRouter = Router();
 usersRouter.post('/sign-up', schemaValidation(signUpSchema), signUp);
-usersRouter.post('/sign-in', schemaValidation(signInSchema), signIn)
+usersRouter.post('/sign-in', schemaValidation(signInSchema), signIn);
 export default usersRouter;

@@ -3,7 +3,7 @@ import Cryptr from 'cryptr';
 import { config } from 'dotenv';
 config();
 
-const SECRET: string = String(process.env.CRYPTR_SECRET);
+const SECRET = process.env.CRYPTR_SECRET as string;
 const cryptr = new Cryptr(SECRET);
 
 export async function hash(data: string): Promise<string> {

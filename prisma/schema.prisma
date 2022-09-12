@@ -29,6 +29,7 @@ model credentials {
   url      String
   label    String @db.VarChar(50)
   password String
+  credential String
   users    users  @relation(fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction)
 
   @@unique([userId, label])
