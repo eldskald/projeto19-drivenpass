@@ -20,3 +20,10 @@ export async function getCredentials(_req: Request, res: Response) {
   const credentials: Credential[] = await services.getCredentials(res.locals.user.id);
   return sendResponse({ type: 'Ok', message: credentials }, res);
 }
+
+export async function deleteCredential(req: Request, res: Response) {
+  const id: number = parseInt(req.params.id);
+  if (isNaN(id)) throw { type: 'Unprocessable' };
+  await services.deleteCredential(id, res.locals.user.id);
+  return sendResponse({ type: 'Deleted' }, res);
+}

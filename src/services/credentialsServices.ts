@@ -1,7 +1,8 @@
 import {
   insertCredential,
   findCredentialById,
-  findAllUserCredentials
+  findAllUserCredentials,
+  removeCredential
 } from '../repositories/credentialsRepository';
 import { encrypt, decrypt } from '../repositories/cryptographyRepository';
 import { Credential, NewCredentialData } from '../types/credentialTypes';
@@ -35,4 +36,10 @@ export async function getCredentials(userId: number): Promise<Credential[]> {
     credentials[i] = { ...credentials[i], password: decryptedPassword };
   }
   return credentials;
+}
+
+export async function deleteCredential(credentialId: number, userId: number): Promise<void> {
+  const credential: Credential | null = await findCredentialById(credentialId);
+  if (!credential || credential.userId != userId) throw { type: 'Not Found' };
+  await removeCredential(credentialId);
 }

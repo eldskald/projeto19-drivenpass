@@ -24,3 +24,9 @@ export async function insertCredential(data: NewCredentialData): Promise<void> {
     }
   });
 }
+
+export async function removeCredential(id: number): Promise<void> {
+  await db.credentials.delete({
+    where: { id }
+  });
+}
