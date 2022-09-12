@@ -2,7 +2,7 @@ import db from '../database';
 import { User, NewUserData } from '../types/userTypes';
 
 export async function findUserById(id: number): Promise<User | null> {
-  return await db.users.findFirst({
+  return await db.users.findUnique({
     where: {
       id: id
     }
@@ -10,7 +10,7 @@ export async function findUserById(id: number): Promise<User | null> {
 }
 
 export async function findUserByEmail(email: string): Promise<User | null> {
-  return await db.users.findFirst({
+  return await db.users.findUnique({
     where: {
       email: email
     }

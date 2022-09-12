@@ -3,10 +3,12 @@ import joi, { Schema } from 'joi';
 const credentialSchema: Schema = joi.object({
   label: joi.string()
     .pattern(/^[a-zA-Z0-9 ]+$/)
+    .max(50)
     .required()
     .messages({
       'string.base': 'Label must be text',
       'string.pattern.base': 'Label must only contain letters and numbers',
+      'string.max': 'Label must be less than 50 characters long',
       'any.required': 'Label field is required'
     }),
   url: joi.string()

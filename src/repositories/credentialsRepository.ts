@@ -9,7 +9,7 @@ export async function findCredentialById(id: number): Promise<Credential | null>
 
 export async function findAllUserCredentials(id: number): Promise<Credential[]> {
   return await db.credentials.findMany({
-    where: { id }
+    where: { userId: id }
   });
 }
 

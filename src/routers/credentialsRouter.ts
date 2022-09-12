@@ -30,5 +30,5 @@ credentialsRouter.delete(
   '/credentials/:id',
   tokenValidation,
   deleteCredential
-)
+);
 export default credentialsRouter;
