@@ -8,18 +8,8 @@ import { encrypt, decrypt } from '../repositories/cryptographyRepository';
 import { Wifi, NewWifiData } from '../types/wifiTypes';
 
 export async function createWifi(data: NewWifiData): Promise<void> {
-  try {
-    const encryptedPassword: string = encrypt(data.password);
-    await insertWifi({...data, password: encryptedPassword});
-  } catch (err: any) {
-    const meta: { target: string[] } | undefined = err.meta;
-    if (!meta) {
-      throw err;
-    }
-    if (meta.target[0] === 'userId' && meta.target[1] === 'label') {
-      throw { type: 'Conflict', message: 'Label already in use' };
-    }
-  }
+  const encryptedPassword: string = encrypt(data.password);
+  await insertWifi({...data, password: encryptedPassword});
 }
 
 export async function getWifi(wifiId: number, userId: number): Promise<Wifi> {

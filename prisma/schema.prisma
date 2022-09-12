@@ -35,6 +35,18 @@ model credentials {
   @@unique([userId, label])
 }
 
+model documents {
+  id             Int    @id @default(autoincrement())
+  userId         Int
+  type           documentType
+  fullName       String @db.VarChar(50)
+  emissionDate   String @db.VarChar(5)
+  expirationDate String @db.VarChar(5)
+  registryNumber String @db.VarChar(20)
+  emittedBy      String @db.VarChar(50)
+  users          users  @relation(fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
 model notes {
   id     Int    @id @default(autoincrement())
   userId Int
@@ -51,6 +63,7 @@ model users {
   password    String
   cards       cards[]
   credentials credentials[]
+  documents   documents[]
   notes       notes[]
   wifis       wifis[]
 }
@@ -68,4 +81,9 @@ enum cardType {
   credit
   debit
   both
+}
+
+enum documentType {
+  rg
+  cnh
 }
