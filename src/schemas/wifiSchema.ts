@@ -1,6 +1,6 @@
 import joi, { Schema } from 'joi';
 
-const credentialSchema: Schema = joi.object({
+const wifiSchema: Schema = joi.object({
   label: joi.string()
     .pattern(/^[A-Za-zÀ-ÖØ-öø-ÿ0-9 ]+$/)
     .max(50)
@@ -11,19 +11,13 @@ const credentialSchema: Schema = joi.object({
       'string.max': 'Label must be less than 50 characters long',
       'any.required': 'Label field is required'
     }),
-  url: joi.string()
-    .uri()
+  name: joi.string()
+    .max(50)
     .required()
     .messages({
-      'string.base': 'URL must be text',
-      'string.uri': 'URL must be a valid URI',
-      'any.required': 'URL field is required'
-    }),
-  credential: joi.string()
-    .required()
-    .messages({
-      'string.base': 'Credential must be text',
-      'any.required': 'Credential field is required'
+      'string.base': 'Name must be text',
+      'string.max': 'Name must be less than 50 characters long',
+      'any.required': 'Name field is required'
     }),
   password: joi.string()
     .required()
@@ -33,4 +27,4 @@ const credentialSchema: Schema = joi.object({
     })
 });
 
-export default credentialSchema;
+export default wifiSchema;

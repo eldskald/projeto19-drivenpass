@@ -2,7 +2,7 @@ import joi, { Schema } from 'joi';
 
 const cardSchema: Schema = joi.object({
   label: joi.string()
-    .pattern(/^[a-zA-Z0-9 ]+$/)
+    .pattern(/^[A-Za-zÀ-ÖØ-öø-ÿ0-9 ]+$/)
     .max(50)
     .required()
     .messages({
